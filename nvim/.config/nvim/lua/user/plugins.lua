@@ -118,19 +118,19 @@ return packer.startup(function(use)
 	use "tamago324/nlsp-settings.nvim"   -- language server settings defined in json for
 	use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
-	use({
-		"jackMort/ChatGPT.nvim",
-		config = function()
-			require("chatgpt").setup({
-				-- optional configuration
-			})
-		end,
-		requires = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim"
-		}
-	})
+	--[[ use({ ]]
+	--[[ 	"jackMort/ChatGPT.nvim", ]]
+	--[[ 	config = function() ]]
+	--[[ 		require("chatgpt").setup({ ]]
+	--[[ 			-- optional configuration ]]
+	--[[ 		}) ]]
+	--[[ 	end, ]]
+	--[[ 	requires = { ]]
+	--[[ 		"MunifTanjim/nui.nvim", ]]
+	--[[ 		"nvim-lua/plenary.nvim", ]]
+	--[[ 		"nvim-telescope/telescope.nvim" ]]
+	--[[ 	} ]]
+	--[[ }) ]]
 
 	use "jose-elias-alvarez/typescript.nvim"
 	use "simrat39/rust-tools.nvim"
