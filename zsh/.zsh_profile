@@ -1,2 +1,4 @@
 export DOTFILES=$HOME/.dotfiles
 export STOW_FOLDERS="bin,nvim,tmux,zsh"
+
+bindkey -s ^f "tmux-sessionizer\n"
