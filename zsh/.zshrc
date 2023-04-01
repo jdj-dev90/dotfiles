@@ -72,7 +72,7 @@ bindkey -s '^o' '^ulfcd\n'
 
 bindkey -s '^a' '^ubc -lq\n'
 
-bindkey -s '^f' '^ucd "$(dirname "$(fzf)")"\n'
+# bindkey -s '^f' '^ucd "$(dirname "$(fzf)")"\n'
 
 bindkey '^[[P' delete-char
 
