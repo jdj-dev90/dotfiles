@@ -13,7 +13,7 @@ HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 export EDITOR=/usr/bin/nvim
 export PATH="/home/jordan/.scripts:/home/jordan/.local/bin:/home/jordan/.local/scripts:$PATH"
 
-alias ls='ls --color=auto'
+alias ls='exa'
 alias v='nvim'
 alias tmux='tmux -u'
 source ~/.zsh_profile
