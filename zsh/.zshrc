@@ -11,10 +11,11 @@ SAVEHIST=10000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 
 export EDITOR=/usr/bin/nvim
-export PATH="/home/jordan/.scripts:/home/jordan/.local/bin:$PATH"
+export PATH="/home/jordan/.scripts:/home/jordan/.local/bin:/home/jordan/.local/scripts:$PATH"
 
 alias ls='ls --color=auto'
 alias v='nvim'
+alias tmux='tmux -u'
 source ~/.zsh_profile
 # source /usr/share/nvm/init-nvm.sh
 
