@@ -85,6 +85,10 @@ keymap("n", "<leader>2", "<cmd>lua require'harpoon.ui'.nav_file(2)<cr>", opts)
 keymap("n", "<leader>3", "<cmd>lua require'harpoon.ui'.nav_file(3)<cr>", opts)
 keymap("n", "<leader>4", "<cmd>lua require'harpoon.ui'.nav_file(4)<cr>", opts)
 
+-- Fugitive --
+keymap("n", "gu", "<cmd>diffget //2<cr>", opts)
+keymap("n", "gh", "<cmd>diffget //3<cr>", opts)
+
 -- Cheatsheet --
 keymap("n", "<leader>?", ":Cheatsheet<CR>", opts)
 
