@@ -101,17 +101,18 @@ local mappings = {
     ct = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
   },
 
-  p = {
-    name = "Packer",
-    c = { "<cmd>PackerCompile<cr>", "Compile" },
-    i = { "<cmd>PackerInstall<cr>", "Install" },
-    s = { "<cmd>PackerSync<cr>", "Sync" },
-    S = { "<cmd>PackerStatus<cr>", "Status" },
-    u = { "<cmd>PackerUpdate<cr>", "Update" },
-  },
+  --[[ p = { ]]
+  --[[   name = "Packer", ]]
+  --[[   c = { "<cmd>PackerCompile<cr>", "Compile" }, ]]
+  --[[   i = { "<cmd>PackerInstall<cr>", "Install" }, ]]
+  --[[   s = { "<cmd>PackerSync<cr>", "Sync" }, ]]
+  --[[   S = { "<cmd>PackerStatus<cr>", "Status" }, ]]
+  --[[   u = { "<cmd>PackerUpdate<cr>", "Update" }, ]]
+  --[[ }, ]]
 
   g = {
     name = "Git",
+    s = { "<cmd>Git<CR>", "Fugitive" },
     g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
@@ -119,7 +120,7 @@ local mappings = {
     p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
     r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
     R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-    s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+    --[[ s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" }, ]]
     u = {
       "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
       "Undo Stage Hunk",
