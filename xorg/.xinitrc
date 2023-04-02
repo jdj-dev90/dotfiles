@@ -65,7 +65,7 @@ picom &
 slstatus &
 
 # Wallpaper
-exec feh --bg-scale ~/Pictures/synth_WP_01.jpg &
+exec feh --bg-scale ~/Pictures/forest.webp &
 
 # Execute DWM
 exec dwm
