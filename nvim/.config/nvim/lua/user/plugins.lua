@@ -53,7 +53,6 @@ return packer.startup(function(use)
 	})
 	use "numToStr/Comment.nvim" -- Easily comment stuff
 	use "nvim-tree/nvim-web-devicons"
-	use "nvim-tree/nvim-tree.lua"
 	use "akinsho/bufferline.nvim"
 	use "moll/vim-bbye"
 	use "nvim-lualine/lualine.nvim"

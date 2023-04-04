@@ -13,10 +13,10 @@ local options = {
   showtabline = 2,                         -- always show tabs
   smartcase = true,                        -- smart case
   smartindent = true,                      -- make indenting smarter again
-  splitbelow = true,                       -- force all horizontal splits to go below current window
+  splitbelow = false,                       -- force all horizontal splits to go above current window
   splitright = true,                       -- force all vertical splits to go to the right of current window
   swapfile = false,                        -- creates a swapfile
-  -- termguicolors = true,                    -- set term gui colors (most terminals support this)
+  termguicolors = true,                    -- set term gui colors (most terminals support this)
   timeoutlen = 1000,                        -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true,                         -- enable persistent undo
   updatetime = 300,                        -- faster completion (4000ms default)
@@ -56,7 +56,11 @@ vim.cmd "command Exec set splitright | vnew | set filetype=sh | read !sh #"
 -- updatetime: set updatetime for CursorHold
 vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
 vim.opt.shortmess = vim.opt.shortmess + { c = true}
-vim.api.nvim_set_option('updatetime', 300) 
+vim.api.nvim_set_option('updatetime', 300)
+
+vim.g.netrw_browse_split = 0
+--[[ vim.g.netrw_banner = 0 ]]
+vim.g.netrw_winsize = 25
 
 -- Fixed column for diagnostics to appear
 -- Show autodiagnostic popup on cursor hover_range
