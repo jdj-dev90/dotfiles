@@ -52,14 +52,13 @@ return packer.startup(function(use)
 		end,
 	})
 	use "numToStr/Comment.nvim" -- Easily comment stuff
-	use "kyazdani42/nvim-web-devicons"
-	use "kyazdani42/nvim-tree.lua"
+	use "nvim-tree/nvim-web-devicons"
+	use "nvim-tree/nvim-tree.lua"
 	use "akinsho/bufferline.nvim"
 	use "moll/vim-bbye"
 	use "nvim-lualine/lualine.nvim"
 	use "yamatsum/nvim-cursorline"
 	use "akinsho/toggleterm.nvim"
-	use "ahmedkhalf/project.nvim"
 	use "lewis6991/impatient.nvim"
 	use "lukas-reineke/indent-blankline.nvim"
 	use "goolord/alpha-nvim"

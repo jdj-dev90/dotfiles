@@ -263,7 +263,7 @@ _G.packer_plugins = {
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/home/jordan/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
-    url = "https://github.com/kyazdani42/nvim-tree.lua"
+    url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -299,7 +299,7 @@ _G.packer_plugins = {
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/jordan/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
-    url = "https://github.com/kyazdani42/nvim-web-devicons"
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -316,11 +316,6 @@ _G.packer_plugins = {
     path = "/home/jordan/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
-  ["project.nvim"] = {
-    loaded = true,
-    path = "/home/jordan/.local/share/nvim/site/pack/packer/start/project.nvim",
-    url = "https://github.com/ahmedkhalf/project.nvim"
-  },
   ["rust-tools.nvim"] = {
     loaded = true,
     path = "/home/jordan/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
@@ -335,11 +330,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jordan/.local/share/nvim/site/pack/packer/start/telescope-media-files.nvim",
     url = "https://github.com/nvim-telescope/telescope-media-files.nvim"
-  },
-  ["telescope-rooter.nvim"] = {
-    loaded = true,
-    path = "/home/jordan/.local/share/nvim/site/pack/packer/start/telescope-rooter.nvim",
-    url = "https://github.com/desdic/telescope-rooter.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
@@ -366,6 +356,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jordan/.local/share/nvim/site/pack/packer/start/vim-bbye",
     url = "https://github.com/moll/vim-bbye"
+  },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/home/jordan/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-rooter"] = {
+    loaded = true,
+    path = "/home/jordan/.local/share/nvim/site/pack/packer/start/vim-rooter",
+    url = "https://github.com/airblade/vim-rooter"
   },
   ["vim-vsnip"] = {
     loaded = true,
