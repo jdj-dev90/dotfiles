@@ -10,13 +10,6 @@ HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 
-export EDITOR=/usr/bin/nvim
-export PATH="/home/jordan/.scripts:/home/jordan/.local/bin:/home/jordan/.local/scripts:$PATH"
-
-alias ls='exa'
-alias v='nvim'
-alias tmux='tmux -u'
-source ~/.zsh_profile
 # source /usr/share/nvm/init-nvm.sh
 
 # Load aliases and shortcuts if existent.
@@ -83,11 +76,7 @@ bindkey -M vicmd '^[[P' vi-delete-char
 bindkey -M vicmd '^e' edit-command-line
 bindkey -M visual '^[[P' vi-delete
 
-# Load syntax highlighting; should be last.
-# source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null 
+bindkey -s ^f "tmux-sessionizer\n"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source ~/.zsh_profile
 
-. "$HOME/.cargo/env"

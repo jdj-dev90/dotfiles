@@ -1,4 +1,13 @@
-export DOTFILES=$HOME/.dotfiles
-export STOW_FOLDERS="bin,nvim,tmux,zsh"
+alias ls='exa'
+alias v='nvim'
+alias tmux='tmux -u'
 
-bindkey -s ^f "tmux-sessionizer\n"
+export DOTFILES=$HOME/.dotfiles
+export STOW_FOLDERS="bin,nvim,tmux,zsh,x11,screenlayout,wallpapers"
+export EDITOR=/usr/bin/nvim
+export PATH="/home/jordan/.scripts:/home/jordan/.local/bin:/home/jordan/.local/scripts:$PATH"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. "$HOME/.cargo/env"
