@@ -11,7 +11,7 @@ require "user.comment"
 require "user.gitsigns"
 require "user.fugitive"
 require "user.copilot"
-require "user.nvim-tree"
+--[[ require "user.nvim-tree" ]]
 require "user.bufferline"
 require "user.lualine"
 require "user.toggleterm"
