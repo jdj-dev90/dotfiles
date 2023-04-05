@@ -34,32 +34,9 @@ declare -a repos=(
 	"{\"name\": \"FR\", \"path\": \"${repo_path}${fr_v2_path}\", \"command\": \"${fr_v2_cmd}\"}"
 )
 
-# Parse command-line arguments
-# while [[ $# -gt 0 ]]; do
-#   key="$1"
-#   case $key in
-#     -e|--env)
-#       if [[ " ${valid_environments[@]} " =~ " $2 " ]]; then
-#         MONARC_DEV_ENV="$2"
-#         shift
-#       else
-#         echo "Invalid environment: $2"
-#         echo "Valid options: ${valid_environments[@]}"
-#         exit 1
-#       fi
-#       shift
-#       ;;
-#     *)
-#       echo "Unknown argument: $1"
-#       exit 1
-#       ;;
-#   esac
-# done
-
 # Attach if session exists
 if tmux has-session -t $session_name 2>/dev/null; then
 		tmux switch-client -t $session_name:1
-		# st -g -e sh -c "tmux attach -t $session_name:1; read" & disown
 		exit 0
 fi
 
@@ -77,8 +54,6 @@ if ! tmux has-session -t=$session_name 2> /dev/null; then
 	tmux -u new-session -d -s $session_name -c $repo_path -n dummy_window
 fi
 
-pane_count = 1
-
 for i in "${!repos[@]}"; do
 	window_idx=$(($i + 1))
 	repo=${repos[$i]}
@@ -90,8 +65,7 @@ for i in "${!repos[@]}"; do
 
 	if [ "$name" = "widget" ] || [ "$name" = "iframe_generator" ]; then
 		tmux split-window -b -v -t $session_name:$nx_window_idx
-		tmux send-keys -t ${session_name}:${nx_window_idx}.${pane_count} "${cmd}" Enter 
-		$pane_count = $(($pane_count + 1))
+		tmux send-keys -t ${session_name}:${nx_window_idx} "${cmd}" Enter 
 	else
 		tmux -u new-window -t $session_name:$window_idx -dn $name 
 		tmux send-keys -t ${session_name}:${window_idx} "${cmd}" Enter 
@@ -101,9 +75,8 @@ for i in "${!repos[@]}"; do
 tmux kill-window -t $session_name:dummy_window
 
 
-# tmux switch-client -t $session_name:1
+tmux switch-client -t $session_name:1
 
-tmux attach -t $session_name:1
 
 
 	
