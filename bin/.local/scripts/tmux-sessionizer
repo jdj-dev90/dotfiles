@@ -7,7 +7,9 @@ else
 		~/code/work/monarc/app/travech-nx/apps/frontend \
 		~/code/work/monarc/app/travech-nx/apps/backend \
 		~/code/work/monarc/app/travech-nx/libs \
-		~/.dotfiles -mindepth 1 -maxdepth 1 -type d | fzf)
+		~/.dotfiles \
+		~/. \
+		-mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then

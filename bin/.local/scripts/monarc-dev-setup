@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+
+# Define list of valid environments
+valid_environments=("dev" "staging" "prod" "dev-staging" "dev-prod")
+
+# Set default environment
+# MONARC_DEV_ENV="dev"
+	
+session_name="terminals"
+tmux_running=$(pgrep tmux)
+
+api_cmd="npm run ${MONARC_DEV_ENV}"
+api_path="api"
+
+fr_v2_cmd="npm run dev"
+fr_v2_path="fr_v2"
+
+dashboard_cmd="npm run dashboard-${MONARC_DEV_ENV}"
+iframe_generator_cmd="npm run start iframe-generator"
+travech_nx_path="travech-nx"
+
+widget_cmd="npm run dev"
+widget_path="widget_v2"
+
+repo_path=($HOME"/code/work/monarc/app/")
+
+nx_window_idx=2
+
+declare -a repos=(
+	"{\"name\": \"API\", \"path\": \"${repo_path}${api_path}\", \"command\": \"${api_cmd}\"}"
+	"{\"name\": \"NX\", \"path\": \"${repo_path}${travech_nx_path}\", \"command\": \"${dashboard_cmd}\"}"
+	"{\"name\": \"iframe_generator\", \"path\": \"${repo_path}${travech_nx_path}\", \"command\": \"${iframe_generator_cmd}\"}"
+	"{\"name\": \"widget\", \"path\": \"${repo_path}${widget_path}\", \"command\": \"${widget_cmd}\"}"
+	"{\"name\": \"FR\", \"path\": \"${repo_path}${fr_v2_path}\", \"command\": \"${fr_v2_cmd}\"}"
+)
+
+# Parse command-line arguments
+# while [[ $# -gt 0 ]]; do
+#   key="$1"
+#   case $key in
+#     -e|--env)
+#       if [[ " ${valid_environments[@]} " =~ " $2 " ]]; then
+#         MONARC_DEV_ENV="$2"
+#         shift
+#       else
+#         echo "Invalid environment: $2"
+#         echo "Valid options: ${valid_environments[@]}"
+#         exit 1
+#       fi
+#       shift
+#       ;;
+#     *)
+#       echo "Unknown argument: $1"
+#       exit 1
+#       ;;
+#   esac
+# done
+
+# Attach if session exists
+if tmux has-session -t $session_name 2>/dev/null; then
+		tmux switch-client -t $session_name:1
+		# st -g -e sh -c "tmux attach -t $session_name:1; read" & disown
+		exit 0
+fi
+
+# something like this if bored
+# st -g primary+0+1080x1920+0+0 -e sh -c "tmux new-session -s mysession; read" & disown
+
+# Create session with dummy_window to remove later
+# This is so we don't end up with an initial zsh window
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+	tmux -u new-session -d -s $session_name -c $repo_path -n dummy_window
+	tmux kill-window -t $session_name:dummy_window
+fi
+
+if ! tmux has-session -t=$session_name 2> /dev/null; then
+	tmux -u new-session -d -s $session_name -c $repo_path -n dummy_window
+fi
+
+pane_count = 1
+
+for i in "${!repos[@]}"; do
+	window_idx=$(($i + 1))
+	repo=${repos[$i]}
+	name=$(echo "${repo}" | jq ".name" | tr -d '"')
+	path=$(echo "${repo}" | jq ".path" | tr -d '"')
+	cmd=$(echo "${repo}" | jq ".command" | tr -d '"')
+
+	cd $path
+
+	if [ "$name" = "widget" ] || [ "$name" = "iframe_generator" ]; then
+		tmux split-window -b -v -t $session_name:$nx_window_idx
+		tmux send-keys -t ${session_name}:${nx_window_idx}.${pane_count} "${cmd}" Enter 
+		$pane_count = $(($pane_count + 1))
+	else
+		tmux -u new-window -t $session_name:$window_idx -dn $name 
+		tmux send-keys -t ${session_name}:${window_idx} "${cmd}" Enter 
+	fi	
+	done
+
+tmux kill-window -t $session_name:dummy_window
+
+
+# tmux switch-client -t $session_name:1
+
+tmux attach -t $session_name:1
+
+
+	

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+MONARC_DEV_ENV="dev"
+export MONARC_DEV_ENV
+
+./monarc-dev-setup "$@"
