@@ -104,10 +104,33 @@ local mappings = {
 	--[[ 	"Find Text", ]]
 	--[[ }, ]]
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+
 	d = {
 		name = "DAP",
+		ui = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
 		ct = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+		tb = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+
+		sv = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+		si = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
+		so = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
+
+		sc = { "<cmd>lua require'dap.ui.variables'.scopes()<cr>", "Variable Scopes" },
+		hh = { "<cmd>lua require'dap.ui.variables'.hover()<cr>", "Variable Hover" },
+		hv = { "<cmd>lua require'dap.ui.variables'.visual_hover()<cr>", "Variable Visual Hover" },
+
+		uh = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Widgets Hover" },
+		uf = { "<cmd>lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>", "Widgets Float" },
+
+
+		sbr = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", "Conditional Breakpoint" },
+		sbm = { "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", "Message Breakpoint" },
+
+
+		ro = { "<cmd>lua require'dap'.repl.open()<CR>", "REPL Open" },
+		rl = { "<cmd>lua require'dap'.repl.run_last()<CR>", "REPL Run Last" },
 	},
+
 	--[[ p = { ]]
 	--[[   name = "Packer", ]]
 	--[[   c = { "<cmd>PackerCompile<cr>", "Compile" }, ]]

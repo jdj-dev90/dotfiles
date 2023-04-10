@@ -12,6 +12,7 @@ null_ls.setup(
 	debug = false,
 	sources = {
 		formatting.prettier,
+		formatting.shfmt,
 		-- formatting.black.with({ extra_args = { "--fast" } }),
 		diagnostics.eslint_d,
     -- diagnostics.flake8
