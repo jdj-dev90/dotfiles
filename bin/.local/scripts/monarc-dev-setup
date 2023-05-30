@@ -12,15 +12,15 @@ tmux_running=$(pgrep tmux)
 api_cmd="npm run ${MONARC_DEV_ENV}"
 api_path="api"
 
-fr_v2_cmd="npm run dev"
-fr_v2_path="fr_v2"
+flight_routes_cmd="npm run dev"
+flight_routes_path="flight-routes"
 
 dashboard_cmd="npm run dashboard-${MONARC_DEV_ENV}"
 iframe_generator_cmd="npm run start iframe-generator"
 travech_nx_path="travech-nx"
 
 widget_cmd="npm run dev"
-widget_path="widget_v2"
+widget_path="widget"
 
 repo_path=($HOME"/code/work/monarc/app/")
 
@@ -31,7 +31,7 @@ declare -a repos=(
 	"{\"name\": \"NX\", \"path\": \"${repo_path}${travech_nx_path}\", \"command\": \"${dashboard_cmd}\"}"
 	"{\"name\": \"iframe_generator\", \"path\": \"${repo_path}${travech_nx_path}\", \"command\": \"${iframe_generator_cmd}\"}"
 	"{\"name\": \"widget\", \"path\": \"${repo_path}${widget_path}\", \"command\": \"${widget_cmd}\"}"
-	"{\"name\": \"FR\", \"path\": \"${repo_path}${fr_v2_path}\", \"command\": \"${fr_v2_cmd}\"}"
+	"{\"name\": \"FR\", \"path\": \"${repo_path}${flight_routes_path}\", \"command\": \"${flight_routes_cmd}\"}"
 )
 
 # Attach if session exists
