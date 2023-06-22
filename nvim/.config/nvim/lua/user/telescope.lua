@@ -65,7 +65,9 @@ telescope.setup {
 			},
 		},
 		file_ignore_patterns = {
-			".git", "node_modules", "assets", "dist", "package-lock.json", ".json", ".md", ".csv"
+			".git", "node_modules", "assets", "dist", "package-lock.json", "JSON",
+			--[[ ".json", ]]
+			".md", ".csv"
 		},
 		vimgrep_arguments = {
 			'rg',

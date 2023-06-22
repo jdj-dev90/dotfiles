@@ -20,6 +20,6 @@ require "user.impatient"
 require "user.indentline"
 require "user.alpha"
 require "user.whichkey"
-require "user.cursorline"
+--[[ require "user.cursorline" ]]
 require "user.autocommands"
 require "user.dbg"
