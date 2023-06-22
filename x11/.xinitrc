@@ -31,8 +31,8 @@ stalonetray --dockapp-mode simple &
 systemctl --user import-environment DISPLAY  &
 clipmenud &
 # Display Resolution
-./.screenlayout/work_layout.sh
-# ./.screenlayout/home_layout.sh
+# ./.screenlayout/work_layout.sh
+./.screenlayout/home_layout.sh
 #xrandr --mode 1920x1080 &
 # Compositor
 picom -f &

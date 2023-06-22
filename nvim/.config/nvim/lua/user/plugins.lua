@@ -76,6 +76,8 @@ return packer.startup(function(use)
 		end
 	})
 
+	use 'lervag/vimtex'
+
 	use "github/copilot.vim"
 
 	--[[ use "ggandor/leap.nvim" ]]
@@ -84,6 +86,8 @@ return packer.startup(function(use)
 		vim.fn['fzf#install']()
 	end
 	}
+
+	use 'lervag/vimtex'
 
 	-- Colorschemes
 	use "rebelot/kanagawa.nvim"
