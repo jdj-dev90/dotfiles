@@ -76,8 +76,6 @@ return packer.startup(function(use)
 		end
 	})
 
-	use 'lervag/vimtex'
-
 	use "github/copilot.vim"
 
 	--[[ use "ggandor/leap.nvim" ]]
