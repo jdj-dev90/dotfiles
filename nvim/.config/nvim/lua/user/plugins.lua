@@ -52,7 +52,6 @@ return packer.startup(function(use)
 		end,
 	})
 	use "numToStr/Comment.nvim" -- Easily comment stuff
-	use "nvim-tree/nvim-web-devicons"
 	use "akinsho/bufferline.nvim"
 	use "moll/vim-bbye"
 	use "nvim-lualine/lualine.nvim"
@@ -64,8 +63,13 @@ return packer.startup(function(use)
 	use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
 	use "folke/which-key.nvim"
 	use "ThePrimeagen/harpoon"
-	--[[ use "airblade/vim-rooter" ]]
 
+	--[[ mini ]]
+	use 'echasnovski/mini.files'
+	use 'echasnovski/mini.cursorword'
+
+
+	--[[ use "airblade/vim-rooter" ]]
 	use({
 		"kylechui/nvim-surround",
 		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -86,6 +90,7 @@ return packer.startup(function(use)
 	}
 
 	use 'lervag/vimtex'
+
 
 	-- Colorschemes
 	use "rebelot/kanagawa.nvim"
@@ -132,7 +137,6 @@ return packer.startup(function(use)
 	--[[ 		"nvim-telescope/telescope.nvim" ]]
 	--[[ 	} ]]
 	--[[ }) ]]
-
 	use "jose-elias-alvarez/typescript.nvim"
 	use "simrat39/rust-tools.nvim"
 

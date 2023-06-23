@@ -90,7 +90,8 @@ local mappings = {
 	--[[ 	"Buffers", ]]
 	--[[ }, ]]
 	["b"] = { "<cmd>Telescope buffers<cr>", "Buffers" },
-	["e"] = { "<cmd>Explore<cr>", "Explorer" },
+	--[[ ["e"] = { "<cmd>Explore<cr>", "Explorer" }, ]]
+	["e"] = { "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<cr>", "Explorer" },
 	["w"] = { "<cmd>w!<CR>", "Save" },
 	["q"] = { "<cmd>q!<CR>", "Quit" },
 	["cc"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },

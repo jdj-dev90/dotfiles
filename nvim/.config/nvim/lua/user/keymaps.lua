@@ -156,6 +156,9 @@ keymap("n", "<leader>dv", "<cmd>lua require'telescope'.extensions.dap.variables{
 keymap("n", "<leader>df", "<cmd>lua require'telescope'.extensions.dap.frames{}<CR>", opts)
 
 
+keymap("n", "-", "<cmd>lua MiniFiles.open()<CR>", opts)
+
+
 -- TMUX Sessionizer Script --
 keymap("n", "<C-f>", "<cmd>!tmux neww tmux-sessionizer<CR>", opts)
 

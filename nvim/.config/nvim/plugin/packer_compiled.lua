@@ -204,6 +204,16 @@ _G.packer_plugins = {
     path = "/home/jordan/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["mini.cursorword"] = {
+    loaded = true,
+    path = "/home/jordan/.local/share/nvim/site/pack/packer/start/mini.cursorword",
+    url = "https://github.com/echasnovski/mini.cursorword"
+  },
+  ["mini.files"] = {
+    loaded = true,
+    path = "/home/jordan/.local/share/nvim/site/pack/packer/start/mini.files",
+    url = "https://github.com/echasnovski/mini.files"
+  },
   ["nlsp-settings.nvim"] = {
     loaded = true,
     path = "/home/jordan/.local/share/nvim/site/pack/packer/start/nlsp-settings.nvim",
@@ -294,7 +304,7 @@ _G.packer_plugins = {
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/jordan/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
-    url = "https://github.com/nvim-tree/nvim-web-devicons"
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
