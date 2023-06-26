@@ -24,8 +24,6 @@ declare -a repos=(
 	"{\"name\": \"Services\", \"path\": \"${repo_path}${rebuild_path}\", \"command\": \"${rebuild_cmd_services}\"}"
 )
 
-docker ps
-
 # Attach if session exists
 if tmux has-session -t $session_name 2>/dev/null; then
 		tmux switch-client -t $session_name:1
