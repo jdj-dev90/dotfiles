@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Define list of valid environments
-valid_environments=("dev" "staging" "prod" "dev-staging" "dev-prod")
+valid_environments=("dev" "staging" "prod") 
 
 # Set default environment
 # MONARC_DEV_ENV="dev"
@@ -9,17 +9,16 @@ valid_environments=("dev" "staging" "prod" "dev-staging" "dev-prod")
 session_name="terminals"
 tmux_running=$(pgrep tmux)
 
-api_cmd="npm run ${MONARC_DEV_ENV}"
+api_cmd="npm run compose:api:${MONARC_DEV_ENV}"
 api_path="api"
 
-flight_routes_cmd="npm run dev"
+flight_routes_cmd="npm run compose:fr:${MONARC_DEV_ENV}"
 flight_routes_path="flight-routes"
 
-dashboard_cmd="npm run dashboard-${MONARC_DEV_ENV}"
-iframe_generator_cmd="npm run start iframe-generator"
+travech_nx_cmd="npm run compose:frontend:${MONARC_DEV_ENV}"
 travech_nx_path="travech-nx"
 
-widget_cmd="npm run dev"
+widget_cmd="npm run compose:widget"
 widget_path="widget"
 
 repo_path=($HOME"/code/work/monarc/app/")
@@ -28,8 +27,7 @@ nx_window_idx=2
 
 declare -a repos=(
 	"{\"name\": \"API\", \"path\": \"${repo_path}${api_path}\", \"command\": \"${api_cmd}\"}"
-	"{\"name\": \"NX\", \"path\": \"${repo_path}${travech_nx_path}\", \"command\": \"${dashboard_cmd}\"}"
-	"{\"name\": \"iframe_generator\", \"path\": \"${repo_path}${travech_nx_path}\", \"command\": \"${iframe_generator_cmd}\"}"
+	"{\"name\": \"NX\", \"path\": \"${repo_path}${travech_nx_path}\", \"command\": \"${travech_nx_cmd}\"}"
 	"{\"name\": \"widget\", \"path\": \"${repo_path}${widget_path}\", \"command\": \"${widget_cmd}\"}"
 	"{\"name\": \"FR\", \"path\": \"${repo_path}${flight_routes_path}\", \"command\": \"${flight_routes_cmd}\"}"
 )
@@ -63,7 +61,7 @@ for i in "${!repos[@]}"; do
 
 	cd $path
 
-	if [ "$name" = "widget" ] || [ "$name" = "iframe_generator" ]; then
+	if [ "$name" = "widget" ] ; then
 		tmux split-window -b -v -t $session_name:$nx_window_idx
 		tmux send-keys -t ${session_name}:${nx_window_idx} "${cmd}" Enter 
 	else
