@@ -1,7 +1,8 @@
 alias ls='exa'
 alias v='nvim'
 alias tmux='tmux -u'
-
+alias mysql="/usr/lib/mysql-workbench/mysql"
+  
 export DOTFILES=$HOME/.dotfiles
 export SCRIPTS=$HOME/.dotfiles/bin/.local/scripts
 export STOW_FOLDERS="bin,nvim,tmux,zsh,x11,screenlayout,wallpapers"
