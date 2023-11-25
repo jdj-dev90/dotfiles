@@ -69,6 +69,7 @@ return packer.startup(function(use)
 	use 'echasnovski/mini.cursorword'
 
 
+
 	--[[ use "airblade/vim-rooter" ]]
 	use({
 		"kylechui/nvim-surround",
@@ -154,6 +155,11 @@ return packer.startup(function(use)
 		end
 	}
 
+	use {
+		"zeioth/garbage-day.nvim",
+		requires = "neovim/nvim-lspconfig",
+	}
+
 	-- Telescope
 	use "nvim-telescope/telescope.nvim"
 	use "nvim-telescope/telescope-media-files.nvim"
@@ -164,13 +170,18 @@ return packer.startup(function(use)
 		run = function() require("nvim-treesitter.install").update { with_sync = true, prefer_git = true } end,
 	}
 	use 'nvim-treesitter/nvim-treesitter-context'
-	use 'nvim-treesitter/nvim-treesitter-textobjects'
+	--[[ use 'nvim-treesitter/nvim-treesitter-textobjects' ]]
 	use "JoosepAlviste/nvim-ts-context-commentstring"
 	use "p00f/nvim-ts-rainbow"
 
 	-- Git
 	use "lewis6991/gitsigns.nvim"
 	use "tpope/vim-fugitive"
+
+	-- DB
+	use 'tpope/vim-dadbod'
+	use 'kristijanhusak/vim-dadbod-ui'
+	use 'kristijanhusak/vim-dadbod-completion'
 
 
 	-- DAP

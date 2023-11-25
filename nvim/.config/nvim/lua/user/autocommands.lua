@@ -40,4 +40,8 @@ vim.cmd [[
     autocmd InsertLeave * :set relativenumber
   augroup END
 
+  augroup _dadbod_completion
+		autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
+  augroup END
+
 ]]
