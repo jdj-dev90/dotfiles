@@ -172,7 +172,7 @@ return packer.startup(function(use)
 	use 'nvim-treesitter/nvim-treesitter-context'
 	--[[ use 'nvim-treesitter/nvim-treesitter-textobjects' ]]
 	use "JoosepAlviste/nvim-ts-context-commentstring"
-	use "p00f/nvim-ts-rainbow"
+	--[[ use "p00f/nvim-ts-rainbow" ]]
 
 	-- Git
 	use "lewis6991/gitsigns.nvim"
