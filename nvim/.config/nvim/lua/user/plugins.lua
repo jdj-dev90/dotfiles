@@ -69,6 +69,7 @@ return packer.startup(function(use)
 	use 'echasnovski/mini.cursorword'
 
 
+
 	--[[ use "airblade/vim-rooter" ]]
 	use({
 		"kylechui/nvim-surround",
@@ -122,7 +123,7 @@ return packer.startup(function(use)
 	use { "williamboman/mason-lspconfig.nvim" }
 	use { "jayp0521/mason-null-ls.nvim" }
 	use "tamago324/nlsp-settings.nvim"   -- language server settings defined in json for
-	use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+	use "nvimtools/none-ls.nvim" -- for formatters and linters
 
 	--[[ use({ ]]
 	--[[ 	"jackMort/ChatGPT.nvim", ]]
@@ -145,11 +146,18 @@ return packer.startup(function(use)
 		requires = "kyazdani42/nvim-web-devicons",
 		config = function()
 			require("trouble").setup {
+				mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+				severity = vim.diagnostic.severity.ERROR,
 				-- your configuration comes here
 				-- or leave it empty to use the default settings
 				-- refer to the configuration section below
 			}
 		end
+	}
+
+	use {
+		"zeioth/garbage-day.nvim",
+		requires = "neovim/nvim-lspconfig",
 	}
 
 	-- Telescope
@@ -162,13 +170,18 @@ return packer.startup(function(use)
 		run = function() require("nvim-treesitter.install").update { with_sync = true, prefer_git = true } end,
 	}
 	use 'nvim-treesitter/nvim-treesitter-context'
-	use 'nvim-treesitter/nvim-treesitter-textobjects'
+	--[[ use 'nvim-treesitter/nvim-treesitter-textobjects' ]]
 	use "JoosepAlviste/nvim-ts-context-commentstring"
-	use "p00f/nvim-ts-rainbow"
+	--[[ use "p00f/nvim-ts-rainbow" ]]
 
 	-- Git
 	use "lewis6991/gitsigns.nvim"
 	use "tpope/vim-fugitive"
+
+	-- DB
+	use 'tpope/vim-dadbod'
+	use 'kristijanhusak/vim-dadbod-ui'
+	use 'kristijanhusak/vim-dadbod-completion'
 
 
 	-- DAP

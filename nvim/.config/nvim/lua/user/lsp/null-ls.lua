@@ -11,8 +11,8 @@ null_ls.setup(
   {
 	debug = false,
 	sources = {
-		formatting.prettier,
-		formatting.shfmt,
+		formatting.prettierd,
+		--[[ formatting.shfmt, ]]
 		-- formatting.black.with({ extra_args = { "--fast" } }),
 		diagnostics.eslint_d,
     -- diagnostics.flake8
@@ -23,10 +23,10 @@ null_ls.setup(
     on_attach = function(client)
         --[[ if client.server_capabilities.document_formatting then ]]
             vim.cmd([[
-            augroup LspFormatting
-                autocmd! * <buffer>
-                autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-            augroup END
+            " augroup LspFormatting
+            "     autocmd! * <buffer>
+            "     autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
+            " augroup END
             ]])
         --[[ end ]]
     end,
