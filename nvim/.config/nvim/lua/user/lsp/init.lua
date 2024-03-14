@@ -54,7 +54,7 @@ require("mason").setup {
 }
 
 require('mason-null-ls').setup({
-	ensure_installed = { 'stylua', 'prettier' }
+	ensure_installed = { 'stylua', 'prettier', 'eslint_d' }
 })
 
 require("mason-lspconfig").setup {
