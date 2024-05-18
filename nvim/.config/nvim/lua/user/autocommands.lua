@@ -29,10 +29,10 @@ vim.cmd [[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
 
-  augroup _make_on_write
-    autocmd!
-    autocmd BufWritePost * :silent !compiler %
-  augroup END
+  " augroup _make_on_write
+  "   autocmd!
+  "   autocmd BufWritePost * :silent !compiler %
+  " augroup END
 
   augroup _set_line_number_on_mode_switch
     autocmd!

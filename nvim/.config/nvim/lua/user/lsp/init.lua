@@ -42,6 +42,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 )
 
 require "user.lsp.null-ls"
+require "user.lsp.schema-store"
 require "user.lsp.rust-tools"
 
 
@@ -53,9 +54,9 @@ require("mason").setup {
 	}
 }
 
-require('mason-null-ls').setup({
-	ensure_installed = { 'stylua', 'prettier', 'eslint_d' }
-})
+--[[ require('mason-null-ls').setup({ ]]
+--[[ 	ensure_installed = { 'stylua', 'prettierd', 'eslint_d' } ]]
+--[[ }) ]]
 
 require("mason-lspconfig").setup {
 	ensure_installed = { "lua_ls", "tsserver" },

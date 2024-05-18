@@ -8,6 +8,7 @@ local trouble = require("trouble.providers.telescope")
 
 telescope.setup {
 	defaults = {
+		layout_strategy = 'horizontal',
 		prompt_prefix = " ",
 		selection_caret = " ",
 		path_display = { "smart" },
@@ -81,9 +82,13 @@ telescope.setup {
 	},
 	pickers = {
 		find_files = {
-			hidden = true
+			hidden = true,
+      theme = "dropdown",
 		},
-		pickers = {}
+		live_grep = {
+			hidden = true,
+      theme = "dropdown",
+		},
 		-- Default configuration for builtin pickers goes here:
 		-- picker_name = {
 		--   picker_config_key = value,

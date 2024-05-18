@@ -3,13 +3,10 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/code/work/monarc/app \
-		~/code/work/monarc/app/travech-nx/apps/frontend \
-		~/code/work/monarc/app/travech-nx/apps/backend \
-		~/code/work/monarc/app/travech-nx/libs \
+    selected=$(find ~/code/work/convert_digital \
 		~/.dotfiles \
 		~/. \
-		-mindepth 1 -maxdepth 1 -type d | fzf)
+		-mindepth 1 -maxdepth 2 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then

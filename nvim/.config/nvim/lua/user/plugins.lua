@@ -59,18 +59,17 @@ return packer.startup(function(use)
 	use "akinsho/toggleterm.nvim"
 	use "lewis6991/impatient.nvim"
 	use "lukas-reineke/indent-blankline.nvim"
-	use "goolord/alpha-nvim"
 	use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
 	use "folke/which-key.nvim"
 	use "ThePrimeagen/harpoon"
 
-	--[[ mini ]]
+	-- mini
 	use 'echasnovski/mini.files'
 	use 'echasnovski/mini.cursorword'
 
+	use "b0o/schemastore.nvim"
 
 
-	--[[ use "airblade/vim-rooter" ]]
 	use({
 		"kylechui/nvim-surround",
 		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -81,16 +80,21 @@ return packer.startup(function(use)
 		end
 	})
 
-	use "github/copilot.vim"
 
-	--[[ use "ggandor/leap.nvim" ]]
 	use { 'kevinhwang91/nvim-bqf' }
 	use { 'junegunn/fzf', run = function()
 		vim.fn['fzf#install']()
 	end
 	}
 
+	-- LaTeX
 	use 'lervag/vimtex'
+
+	-- Markdown Preview
+	use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+	})
 
 
 	-- Colorschemes
@@ -117,27 +121,16 @@ return packer.startup(function(use)
 	use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
 	-- LSP
-	--[[ use "williamboman/nvim-lsp-installer" -- simple to use language server installer ]]
 	use "neovim/nvim-lspconfig" -- enable LSP
 	use { "williamboman/mason.nvim" }
 	use { "williamboman/mason-lspconfig.nvim" }
-	use { "jayp0521/mason-null-ls.nvim" }
-	use "tamago324/nlsp-settings.nvim"   -- language server settings defined in json for
-	use "nvimtools/none-ls.nvim" -- for formatters and linters
+	--[[ use { "jayp0521/mason-null-ls.nvim" } ]]
+	use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
+	use { "nvimtools/none-ls.nvim",   -- for formatters and linters
+		requires = "nvimtools/none-ls-extras.nvim"
+	}
 
-	--[[ use({ ]]
-	--[[ 	"jackMort/ChatGPT.nvim", ]]
-	--[[ 	config = function() ]]
-	--[[ 		require("chatgpt").setup({ ]]
-	--[[ 			-- optional configuration ]]
-	--[[ 		}) ]]
-	--[[ 	end, ]]
-	--[[ 	requires = { ]]
-	--[[ 		"MunifTanjim/nui.nvim", ]]
-	--[[ 		"nvim-lua/plenary.nvim", ]]
-	--[[ 		"nvim-telescope/telescope.nvim" ]]
-	--[[ 	} ]]
-	--[[ }) ]]
+
 	use "jose-elias-alvarez/typescript.nvim"
 	use "simrat39/rust-tools.nvim"
 
@@ -155,14 +148,8 @@ return packer.startup(function(use)
 		end
 	}
 
-	use {
-		"zeioth/garbage-day.nvim",
-		requires = "neovim/nvim-lspconfig",
-	}
-
 	-- Telescope
 	use "nvim-telescope/telescope.nvim"
-	use "nvim-telescope/telescope-media-files.nvim"
 
 	-- Treesitter
 	use {
@@ -188,8 +175,12 @@ return packer.startup(function(use)
 	use 'mfussenegger/nvim-dap'
 	use "jay-babu/mason-nvim-dap.nvim"
 	use 'theHamsta/nvim-dap-virtual-text'
-	use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+	use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
 	use { 'nvim-telescope/telescope-dap.nvim' }
+
+
+	-- Tmux
+	use "alexghergh/nvim-tmux-navigation"
 
 
 	-- Automatically set up your configuration after cloning packer.nvim
