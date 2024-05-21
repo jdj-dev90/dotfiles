@@ -143,9 +143,9 @@ local mappings = {
 
 	g = {
 		name = "Git",
-		g = { "<cmd>:Neogit<CR>", "Neogit" },
-		P = { "<cmd>:Neogit push", "Push" }, -- force?
-		L = { "<cmd>:Neogit log", "Log" },
+		g = { "<cmd>:Neogit<cr>", "Neogit" },
+		P = { "<cmd>:Neogit push<cr>", "Push" }, -- force?
+		L = { "<cmd>:Neogit log<cr>", "Log" },
 		--[[ g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" }, ]]
 		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
 		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
