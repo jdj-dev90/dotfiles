@@ -92,8 +92,8 @@ return packer.startup(function(use)
 
 	-- Markdown Preview
 	use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
+		"iamcco/markdown-preview.nvim",
+		run = function() vim.fn["mkdp#util#install"]() end,
 	})
 
 
@@ -163,20 +163,30 @@ return packer.startup(function(use)
 
 	-- Git
 	use "lewis6991/gitsigns.nvim"
-	use "tpope/vim-fugitive"
+	--[[ use "tpope/vim-fugitive" ]]
+	use "sindrets/diffview.nvim"
+	use {
+		"NeogitOrg/neogit",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		config = true
+	}
 
 	-- DB
-	use 'tpope/vim-dadbod'
-	use 'kristijanhusak/vim-dadbod-ui'
-	use 'kristijanhusak/vim-dadbod-completion'
+	--[[ use 'tpope/vim-dadbod' ]]
+	--[[ use 'kristijanhusak/vim-dadbod-ui' ]]
+	--[[ use 'kristijanhusak/vim-dadbod-completion' ]]
 
 
 	-- DAP
-	use 'mfussenegger/nvim-dap'
-	use "jay-babu/mason-nvim-dap.nvim"
-	use 'theHamsta/nvim-dap-virtual-text'
-	use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
-	use { 'nvim-telescope/telescope-dap.nvim' }
+	--[[ use 'mfussenegger/nvim-dap' ]]
+	--[[ use "jay-babu/mason-nvim-dap.nvim" ]]
+	--[[ use 'theHamsta/nvim-dap-virtual-text' ]]
+	--[[ use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } } ]]
+	--[[ use { 'nvim-telescope/telescope-dap.nvim' } ]]
 
 
 	-- Tmux
