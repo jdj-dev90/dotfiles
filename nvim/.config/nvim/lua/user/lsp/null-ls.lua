@@ -7,6 +7,7 @@ null_ls.setup(
 	{
 		debug = false,
 		sources = {
+			null_ls.builtins.formatting.stylua,
 			null_ls.builtins.formatting.prettierd,
 			require("none-ls.diagnostics.eslint_d"),
 			require("typescript.extensions.null-ls.code-actions")

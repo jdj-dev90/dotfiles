@@ -1,0 +1,13 @@
+[user]
+	email = jdj.dev90@gmail.com
+	name = Jordan
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential]
+	helper = store
+[includeIf "gitdir:~/code/work/convert_digital/"]
+    path = ~/.gitconfig-work
