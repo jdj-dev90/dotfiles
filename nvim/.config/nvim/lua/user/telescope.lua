@@ -3,8 +3,17 @@ if not status_ok then
   return
 end
 
+--[[ `open_with_trouble()` is deprecated ]]
+--[[ ```lua ]]
+--[[ -- Use this: ]]
+--[[ require("trouble.sources.telescope").open() ]]
+--[[]]
+--[[ -- Instead of: ]]
+--[[ require("trouble.providers.telescope").open_with_trouble() ]]
+
 local actions = require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
+local trouble_providers = require("trouble.providers.telescope")
+local trouble_sources = require("trouble.sources.telescope")
 
 telescope.setup({
   defaults = {
@@ -25,7 +34,7 @@ telescope.setup({
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         --[[ ["<C-t>"] = actions.select_tab, ]]
-        ["<C-t>"] = trouble.open_with_trouble,
+        ["<C-t>"] = trouble_sources.open,
         ["<C-u>"] = actions.preview_scrolling_up,
         ["<C-d>"] = actions.preview_scrolling_down,
         ["<PageUp>"] = actions.results_scrolling_up,
@@ -44,7 +53,7 @@ telescope.setup({
         ["<C-x>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         --[[ ["<C-t>"] = actions.select_tab, ]]
-        ["<C-t>"] = trouble.open_with_trouble,
+        ["<C-t>"] = trouble_sources.open,
         ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
         ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
@@ -72,7 +81,6 @@ telescope.setup({
       "dist",
       "package-lock.json",
       "JSON",
-      ".md",
       ".csv",
     },
     vimgrep_arguments = {

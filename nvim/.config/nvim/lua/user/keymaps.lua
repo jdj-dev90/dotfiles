@@ -10,8 +10,6 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -72,7 +70,6 @@ keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
-
 --[[ keymap("n", "<leader>f", ]]
 --[[   "<cmd>lua require(telescope.builtin).find_files(require('telescope.themes').get_dropdown())<cr>", opts) ]]
 --[[ keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts) ]]
@@ -86,7 +83,6 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 --[[     "<cmd>lua require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown())<cr>", ]]
 --[[     "Find Text", ]]
 --[[   }, ]]
-
 
 -- Harpoon --
 keymap("n", "<leader>h", "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<cr>", opts)
@@ -106,15 +102,12 @@ keymap("n", "<leader>4", "<cmd>lua require'harpoon.ui'.nav_file(4)<cr>", opts)
 keymap("n", "<leader>?", ":Cheatsheet<CR>", opts)
 
 -- Trouble --
-keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
+keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", opts)
 keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", opts)
 keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
 keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", opts)
 keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", opts)
 keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", opts)
-
--- Spectre --
-keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
 
 -- LSP --
 --[[ keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts) ]]
@@ -147,7 +140,6 @@ keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
 --[[ keymap("n", "<leader>dro", "<cmd>lua require'dap'.repl.open()<CR>", opts) ]]
 --[[ keymap("n", "<leader>drl", "<cmd>lua require'dap'.repl.run_last()<CR>", opts) ]]
 
-
 -- Telescope DAP --
 keymap("n", "<leader>dcc", "<cmd>lua require'telescope'.extensions.dap.commands{}<CR>", opts)
 keymap("n", "<leader>dco", "<cmd>lua require'telescope'.extensions.dap.configurations{}<CR>", opts)
@@ -155,13 +147,7 @@ keymap("n", "<leader>dlb", "<cmd>lua require'telescope'.extensions.dap.list_brea
 keymap("n", "<leader>dv", "<cmd>lua require'telescope'.extensions.dap.variables{}<CR>", opts)
 keymap("n", "<leader>df", "<cmd>lua require'telescope'.extensions.dap.frames{}<CR>", opts)
 
-
 keymap("n", "-", "<cmd>lua MiniFiles.open()<CR>", opts)
-
 
 -- TMUX Sessionizer Script --
 keymap("n", "<C-f>", "<cmd>!tmux neww tmux-sessionizer<CR>", opts)
-
-
-
-
