@@ -6,6 +6,7 @@ else
     selected=$(find ~/code/work/convert_digital \
 		~/.dotfiles \
 		~/. \
+		~/uni \
 		-mindepth 1 -maxdepth 2 -type d | fzf)
 fi
 
