@@ -11,3 +11,5 @@
 	helper = store
 [includeIf "gitdir:~/code/work/convert_digital/"]
     path = ~/.gitconfig-work
+[init]
+	defaultBranch = main
