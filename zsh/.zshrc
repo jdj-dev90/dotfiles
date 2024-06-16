@@ -107,9 +107,6 @@ lfcd () {
     fi
 }
 
-bindkey -s '^o' '^ulfcd\n'
-
-bindkey -s '^a' '^ubc -lq\n'
 
 
 bindkey '^[[P' delete-char
@@ -123,6 +120,7 @@ bindkey -M visual '^[[P' vi-delete
 bindkey '^Y' autosuggest-accept
 
 bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s '^@' 'tmux-splitter\n'
 
 source ~/.zsh_profile
 

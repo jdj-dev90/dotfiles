@@ -207,8 +207,13 @@ local mappings = {
         t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
         p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
         f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-        h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-        v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+        --[[ h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" }, ]]
+        --[[ v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" }, ]]
+
+        h = { "<cmd>!tmux split-window -h -b<cr>", "Split Left" },
+        j = { "<cmd>tmux split-window -v<cr>", "Split Down" },
+        k = { "<cmd>tmux split-window -v -b<cr>", "Split Up" },
+        l = { "<cmd>tmux split-window -h<cr>", "Split Right" },
     },
     C = {
         name = "ChatGPT",
@@ -255,21 +260,24 @@ local mappings = {
         o = { "<cmd>cd $SECOND_BRAIN<CR>", "Navigate To Vault", mode = { "n", "v" } },
         -- new note
         n = { "<cmd>ObsidianNew<CR>", "New Note", mode = { "n", "v" } },
-        -- convert note to template and remove leading white space
-        ["tn"] = {
-            "<cmd>ObsidianTemplate note<CR> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<CR>",
-            "Note Template",
-            mode = { "n", "v" },
-        },
-        ["tu"] = {
-            "<cmd>ObsidianTemplate uni-note<CR> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<CR>",
-            "Uni-Note Template",
-            mode = { "n", "v" },
-        },
-        ["ts"] = {
-            "<cmd>ObsidianTemplate uni-subject<CR> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<CR>",
-            "Uni-Subject Template",
-            mode = { "n", "v" },
+        t = {
+
+            -- convert note to template and remove leading white space
+            n = {
+                "<cmd>ObsidianTemplate note<CR> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<CR>",
+                "Note Template",
+                mode = { "n", "v" },
+            },
+            u = {
+                "<cmd>ObsidianTemplate uni-note<CR> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<CR>",
+                "Uni-Note Template",
+                mode = { "n", "v" },
+            },
+            s = {
+                "<cmd>ObsidianTemplate uni-subject<CR> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<CR>",
+                "Uni-Subject Template",
+                mode = { "n", "v" },
+            },
         },
         -- strip date from note title and replace dashes with spaces
         -- must have cursor on title
