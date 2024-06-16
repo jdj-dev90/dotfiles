@@ -83,28 +83,11 @@ local opts = {
 --[[ keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts) ]]
 --[[ keymap("n", "<c-e>", "<cmd>Telescope grep_string<cr>", opts) ]]
 local mappings = {
-    -- ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
-    --[[ ["b"] = { ]]
-    --[[ 	"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown())<cr>", ]]
-    --[[ 	"Buffers", ]]
-    --[[ }, ]]
-    ["b"] = { "<cmd>Telescope buffers<cr>", "Buffers" },
-    --[[ ["e"] = { "<cmd>Explore<cr>", "Explorer" }, ]]
-    ["e"] = { "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<cr>", "Explorer" },
-    ["w"] = { "<cmd>w!<CR>", "Save" },
-    ["q"] = { "<cmd>q!<CR>", "Quit" },
-    ["cc"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-    --[[ ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" }, ]]
-    --[[ ["f"] = { ]]
-    --[[ 	"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown())<cr>", ]]
-    --[[ 	"Find files", ]]
-    --[[ }, ]]
-    --[[ ["F"] = { ]]
-    --[[ 	"<cmd>lua require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown())<cr>", ]]
-    --[[ 	"Find Text", ]]
-    --[[ }, ]]
-    ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-
+    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+    e = { "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<cr>", "Explorer" },
+    w = { "<cmd>w!<CR>", "Save" },
+    q = { "<cmd>q!<CR>", "Quit" },
+    cc = { "<cmd>Bdelete!<CR>", "Close Buffer" },
     d = {
         name = "DAP",
         ui = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
@@ -138,21 +121,11 @@ local mappings = {
         rl = { "<cmd>lua require'dap'.repl.run_last()<CR>", "REPL Run Last" },
     },
 
-    --[[ p = { ]]
-    --[[   name = "Packer", ]]
-    --[[   c = { "<cmd>PackerCompile<cr>", "Compile" }, ]]
-    --[[   i = { "<cmd>PackerInstall<cr>", "Install" }, ]]
-    --[[   s = { "<cmd>PackerSync<cr>", "Sync" }, ]]
-    --[[   S = { "<cmd>PackerStatus<cr>", "Status" }, ]]
-    --[[   u = { "<cmd>PackerUpdate<cr>", "Update" }, ]]
-    --[[ }, ]]
-
     g = {
         name = "Git",
         g = { "<cmd>:Neogit<cr>", "Neogit" },
         P = { "<cmd>:Neogit push<cr>", "Push" }, -- force?
         L = { "<cmd>:Neogit log<cr>", "Log" },
-        --[[ g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" }, ]]
         j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
         k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
         l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
@@ -252,6 +225,70 @@ local mappings = {
         x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
         r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
         l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
+    },
+
+    --------------
+    -- obsidian --
+    --------------
+    --
+    -- >>> oo # from shell, navigate to vault (optional)
+    --
+    -- # NEW NOTE
+    -- >>> on "Note Name" # call my "obsidian new note" shell script (~/bin/on)
+    -- >>>
+    -- >>> ))) <leader>on # inside vim now, format note as template
+    -- >>> ))) # add tag, e.g. fact / blog / video / etc..
+    -- >>> ))) # add hubs, e.g. [[python]], [[machine-learning]], etc...
+    -- >>> ))) <leader>of # format title
+    --
+    -- # END OF DAY/WEEK REVIEW
+    -- >>> or # review notes in inbox
+    -- >>>
+    -- >>> ))) <leader>ok # inside vim now, move to zettelkasten
+    -- >>> ))) <leader>odd # or delete
+    -- >>>
+    -- >>> og # organize saved notes from zettelkasten into notes/[tag] folders
+    --
+    o = {
+        -- navigate to vault
+        o = { "<cmd>cd $SECOND_BRAIN<CR>", "Navigate To Vault", mode = { "n", "v" } },
+        -- new note
+        n = { "<cmd>ObsidianNew<CR>", "New Note", mode = { "n", "v" } },
+        -- convert note to template and remove leading white space
+        ["tn"] = {
+            "<cmd>ObsidianTemplate note<CR> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<CR>",
+            "Note Template",
+            mode = { "n", "v" },
+        },
+        ["tu"] = {
+            "<cmd>ObsidianTemplate uni-note<CR> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<CR>",
+            "Uni-Note Template",
+            mode = { "n", "v" },
+        },
+        ["ts"] = {
+            "<cmd>ObsidianTemplate uni-subject<CR> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<CR>",
+            "Uni-Subject Template",
+            mode = { "n", "v" },
+        },
+        -- strip date from note title and replace dashes with spaces
+        -- must have cursor on title
+        x = { "<cmd>g/^# /s/-/ /g | g/^# /s/_/ - /g<cr>", "Fix Title", mode = { "n", "v" } },
+        --
+        -- search for files in full vault
+        f = {
+            '<cmd>Telescope find_files search_dirs={"$SECOND_BRAIN/notes"}<CR>',
+            "Search SB Files",
+            mode = { "n", "v" },
+        },
+        --
+        -- search for files in notes (ignore zettelkasten)
+        --
+        s = { '<cmd>Telescope live_grep search_dirs={"$SECOND_BRAIN/notes"}<CR>', "Grep SB", mode = { "n", "v" } },
+        -- for review workflow
+        -- move file in current buffer to zettelkasten folder
+        k = { "<cmd>!mv '%:p' $SECOND_BRAIN/zettelkasten<cr>:bd<cr>", "Accept Note", mode = { "n", "v" } },
+        -- delete file in current buffer
+        d = { "<cmd>!rm '%:p'<cr>:bd<cr>", "Delete Note", mode = { "n", "v" } },
     },
 }
 
