@@ -99,7 +99,7 @@ keymap("n", "<leader>4", "<cmd>lua require'harpoon.ui'.nav_file(4)<cr>", opts)
 --[[ keymap("n", "gh", "<cmd>diffget //3<cr>", opts) ]]
 
 -- Cheatsheet --
-keymap("n", "<leader>?", ":Cheatsheet<CR>", opts)
+--[[ keymap("n", "<leader>?", ":Cheatsheet<CR>", opts) ]]
 
 -- Trouble --
 keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", opts)
