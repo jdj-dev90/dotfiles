@@ -250,6 +250,7 @@ local mappings = {
     -- >>> og # organize saved notes from zettelkasten into notes/[tag] folders
     --
     o = {
+        name = "Obsidian",
         -- navigate to vault
         o = { "<cmd>cd $SECOND_BRAIN<CR>", "Navigate To Vault", mode = { "n", "v" } },
         -- new note

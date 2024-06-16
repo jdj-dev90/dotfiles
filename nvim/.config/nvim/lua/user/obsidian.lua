@@ -76,3 +76,44 @@ require("obsidian").setup({
 --[[     obsidian_server_address = "http://localhost:27123", ]]
 --[[     scroll_sync = true, ]]
 --[[ }) ]]
+
+local function is_obsidian_running()
+    local handle = io.popen("pgrep -f obsidian")
+    if not handle then
+        return false
+    end
+
+    local result = handle:read("*a")
+    handle:close()
+
+    -- Check if the result is not nil and not empty
+    return result ~= nil and result ~= ""
+end
+
+local function in_second_brain_dir()
+    local second_brain_path = vim.fn.getenv("SECOND_BRAIN")
+    if not second_brain_path or second_brain_path == "" then
+        return false
+    end
+
+    local current_dir = vim.fn.getcwd()
+    return current_dir == second_brain_path
+end
+
+local function setup_obsidian_bridge()
+    if is_obsidian_running() and in_second_brain_dir() then
+        require("obsidian-bridge").setup({
+            obsidian_server_address = "http://localhost:27123",
+            scroll_sync = true,
+        })
+        print("Obsidian bridge setup complete.")
+    elseif not in_second_brain_dir() then
+        print("Obsidian bridge exiting.")
+    else
+        print("Obsidian is not running or not in second-brain directory. Retrying...")
+        vim.defer_fn(setup_obsidian_bridge, 5000) -- Retry after 5 seconds
+    end
+end
+
+-- Initial check and setup
+setup_obsidian_bridge()
