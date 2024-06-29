@@ -2,7 +2,7 @@ require("obsidian").setup({
     workspaces = {
         {
             name = "personal",
-            path = "~/second-brain",
+            path = "~/vaults/second-brain",
         },
     },
     notes_subdir = "inbox",
