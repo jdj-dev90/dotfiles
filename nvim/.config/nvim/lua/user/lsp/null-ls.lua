@@ -7,7 +7,11 @@ null_ls.setup({
     debug = false,
     sources = {
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.prettierd,
+
+        null_ls.builtins.formatting.prettierd.with({
+            filetypes = { "html", "javascript", "typescript", "css", "json", "yaml", "markdown", "tmpl" }, -- Ensure .tmpl is included
+        }),
+
         null_ls.builtins.diagnostics.golangci_lint.with({
             filetypes = { "tmpl" },
         }),

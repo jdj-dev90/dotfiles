@@ -78,7 +78,10 @@ require("mason-lspconfig").setup_handlers({
       settings = {
         Lua = {
           diagnostics = {
-            globals = { "vim" },
+            globals = {
+              "vim",
+              "luaList", -- KrakenD
+            },
           },
           workspace = {
             library = {
@@ -104,4 +107,3 @@ require("mason-lspconfig").setup_handlers({
     })
   end,
 })
-
