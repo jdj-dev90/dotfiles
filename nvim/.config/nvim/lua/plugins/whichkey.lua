@@ -1,230 +1,596 @@
 return {
-  "folke/which-key.nvim",
-  event = "VeryLazy",
-  dependencies = {
-	"nvim-lua/plenary.nvim"
-},
-  init = function()
-    vim.o.timeout = true
-    vim.o.timeoutlen = 300
-  end,
-  config = function()
+	"folke/which-key.nvim",
+	event = "VeryLazy",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+	},
+	init = function()
+		vim.o.timeout = true
+		vim.o.timeoutlen = 300
+	end,
+	config = function()
+		local status_ok, which_key = pcall(require, "which-key")
+		if not status_ok then
+			return
+		end
 
+		local opts = {
+			mode = "n", -- NORMAL mode
+			prefix = "<leader>",
+			buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+			silent = true, -- use `silent` when creating keymaps
+			noremap = true, -- use `noremap` when creating keymaps
+			nowait = true, -- use `nowait` when creating keymaps
+		}
 
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
-	return
-end
+		which_key.add({
+			{
+				"<leader>b",
+				"<cmd>Telescope buffers<cr>",
+				desc = "Buffers",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>cc",
+				"<cmd>bdelete!<CR>",
+				desc = "Close Buffer",
+				nowait = true,
+				remap = false,
+			},
+			{ "<leader>d", group = "DAP", nowait = true, remap = false },
+			{
+				"<leader>dct",
+				"<cmd>lua require'dap'.continue()<cr>",
+				desc = "Continue",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>dhh",
+				"<cmd>lua require'dap.ui.variables'.hover()<cr>",
+				desc = "Variable Hover",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>dhv",
+				"<cmd>lua require'dap.ui.variables'.visual_hover()<cr>",
+				desc = "Variable Visual Hover",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>drl",
+				"<cmd>lua require'dap'.repl.run_last()<CR>",
+				desc = "REPL Run Last",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>dro",
+				"<cmd>lua require'dap'.repl.open()<CR>",
+				desc = "REPL Open",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>dsbm",
+				"<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+				desc = "Message Breakpoint",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>dsbr",
+				"<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+				desc = "Conditional Breakpoint",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>dsc",
+				"<cmd>lua require'dap.ui.variables'.scopes()<cr>",
+				desc = "Variable Scopes",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>dsi",
+				"<cmd>lua require'dap'.step_into()<cr>",
+				desc = "Step Into",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>dso",
+				"<cmd>lua require'dap'.step_out()<cr>",
+				desc = "Step Out",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>dsv",
+				"<cmd>lua require'dap'.step_over()<cr>",
+				desc = "Step Over",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>dtb",
+				"<cmd>lua require'dap'.toggle_breakpoint()<cr>",
+				desc = "Toggle Breakpoint",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>duf",
+				"<cmd>lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>",
+				desc = "Widgets Float",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>duh",
+				"<cmd>lua require'dap.ui.widgets'.hover()<cr>",
+				desc = "Widgets Hover",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>dui",
+				"<cmd>lua require'dapui'.toggle()<cr>",
+				desc = "Toggle UI",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>e",
+				"<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<cr>",
+				desc = "Explorer",
+				nowait = true,
+				remap = false,
+			},
+			{ "<leader>g", group = "Git", nowait = true, remap = false },
+			{
+				"<leader>gD",
+				"<cmd>:DiffviewOpen main<cr>",
+				desc = "Diffview Open main",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gL",
+				"<cmd>:Neogit log<cr>",
+				desc = "Log",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gP",
+				"<cmd>:Neogit push<cr>",
+				desc = "Push",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gR",
+				"<cmd>lua require 'gitsigns'.reset_buffer()<cr>",
+				desc = "Reset Buffer",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gb",
+				"<cmd>Telescope git_branches<cr>",
+				desc = "Checkout branch",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gc",
+				"<cmd>Telescope git_commits<cr>",
+				desc = "Checkout commit",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gdc",
+				"<cmd>:DiffviewClose<cr>",
+				desc = "Diffview Close",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gdo",
+				"<cmd>:DiffviewOpen<cr>",
+				desc = "Diffview Open",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gg",
+				"<cmd>:Neogit<cr>",
+				desc = "Neogit",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gj",
+				"<cmd>lua require 'gitsigns'.next_hunk()<cr>",
+				desc = "Next Hunk",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gk",
+				"<cmd>lua require 'gitsigns'.prev_hunk()<cr>",
+				desc = "Prev Hunk",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gl",
+				"<cmd>lua require 'gitsigns'.blame_line()<cr>",
+				desc = "Blame",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>go",
+				"<cmd>Telescope git_status<cr>",
+				desc = "Open changed file",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gp",
+				"<cmd>lua require 'gitsigns'.preview_hunk()<cr>",
+				desc = "Preview Hunk",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gr",
+				"<cmd>lua require 'gitsigns'.reset_hunk()<cr>",
+				desc = "Reset Hunk",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gs",
+				"<cmd>lua require 'gitsigns'.stage_hunk()<cr>",
+				desc = "Stage Hunk",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>gu",
+				"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+				desc = "Undo Stage Hunk",
+				nowait = true,
+				remap = false,
+			},
+			{ "<leader>l", group = "LSP", nowait = true, remap = false },
+			{ "<leader>lI", "<cmd>LspInstallInfo<cr>", desc = "Installer Info", nowait = true, remap = false },
+			{
+				"<leader>lS",
+				"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+				desc = "Workspace Symbols",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>la",
+				"<cmd>lua vim.lsp.buf.code_action()<cr>",
+				desc = "Code Action",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>ld",
+				"<cmd>Telescope lsp_document_diagnostics<cr>",
+				desc = "Document Diagnostics",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>lf",
+				"<cmd>lua vim.lsp.buf.format({async = true})<cr>",
+				desc = "Format",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>li",
+				"<cmd>LspInfo<cr>",
+				desc = "Info",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>lj",
+				"<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+				desc = "Next Diagnostic",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>lk",
+				"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
+				desc = "Prev Diagnostic",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>ll",
+				"<cmd>lua vim.lsp.codelens.run()<cr>",
+				desc = "CodeLens Action",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>lq",
+				"<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>",
+				desc = "Quickfix",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>lr",
+				"<cmd>lua vim.lsp.buf.rename()<cr>",
+				desc = "Rename",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>ls",
+				"<cmd>Telescope lsp_document_symbols<cr>",
+				desc = "Document Symbols",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>lw",
+				"<cmd>Telescope lsp_workspace_diagnostics<cr>",
+				desc = "Workspace Diagnostics",
+				nowait = true,
+				remap = false,
+			},
+			{ "<leader>o", group = "Obsidian", nowait = true, remap = false },
+			{
+				"<leader>q",
+				"<cmd>q!<CR>",
+				desc = "Quit",
+				nowait = true,
+				remap = false,
+			},
+			{ "<leader>s", group = "Search", nowait = true, remap = false },
+			{
+				"<leader>sC",
+				"<cmd>Telescope commands<cr>",
+				desc = "Commands",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>sM",
+				"<cmd>Telescope man_pages<cr>",
+				desc = "Man Pages",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>sR",
+				"<cmd>Telescope registers<cr>",
+				desc = "Registers",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>sb",
+				"<cmd>Telescope git_branches<cr>",
+				desc = "Checkout branch",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>sc",
+				"<cmd>Telescope colorscheme<cr>",
+				desc = "Colorscheme",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>sf",
+				"<cmd>Telescope find_files<cr>",
+				desc = "Find Files",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>sh",
+				"<cmd>Telescope help_tags<cr>",
+				desc = "Find Help",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>sk",
+				"<cmd>Telescope keymaps<cr>",
+				desc = "Keymaps",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>sr",
+				"<cmd>Telescope oldfiles<cr>",
+				desc = "Open Recent File",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>su",
+				"<cmd>Telescope grep_string<cr>",
+				desc = "Search Text Under Cursor",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>sw",
+				"<cmd>Telescope live_grep<cr>",
+				desc = "Find Text",
+				nowait = true,
+				remap = false,
+			},
+			{ "<leader>t", group = "Terminal", nowait = true, remap = false },
+			{
+				"<leader>td",
+				"<cmd>lua _LAZYDOCKER_TOGGLE()<cr>",
+				desc = "Docker",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>tf",
+				"<cmd>ToggleTerm direction=float<cr>",
+				desc = "Float",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>th",
+				"<cmd>!tmux split-window -h -b<cr>",
+				desc = "Split Left",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>tj",
+				"<cmd>tmux split-window -v<cr>",
+				desc = "Split Down",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>tk",
+				"<cmd>tmux split-window -v -b<cr>",
+				desc = "Split Up",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>tl",
+				"<cmd>tmux split-window -h<cr>",
+				desc = "Split Right",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>tn",
+				"<cmd>lua _LAZYNPM_TOGGLE()<cr>",
+				desc = "NPM",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>to",
+				"<cmd>lua _NODE_TOGGLE()<cr>",
+				desc = "Node",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>tp",
+				"<cmd>lua _PYTHON_TOGGLE()<cr>",
+				desc = "Python",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>tt",
+				"<cmd>lua _HTOP_TOGGLE()<cr>",
+				desc = "Htop",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>tu",
+				"<cmd>lua _NCDU_TOGGLE()<cr>",
+				desc = "NCDU",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>w",
+				"<cmd>w!<CR>",
+				desc = "Save",
+				nowait = true,
+				remap = false,
+			},
+			{
+				mode = { "n", "v" },
+				{
+					"<leader>od",
+					"<cmd>!rm '%:p'<cr>:bd<cr>",
+					desc = "Delete Note",
+					nowait = true,
+					remap = false,
+				},
+				{
+					"<leader>of",
+					'<cmd>Telescope find_files search_dirs={"$SECOND_BRAIN/notes"}<CR>',
+					desc = "Search SB Files",
+					nowait = true,
+					remap = false,
+				},
+				{
+					"<leader>ok",
+					"<cmd>!mv '%:p' $SECOND_BRAIN/zettelkasten<cr>:bd<cr>",
+					desc = "Accept Note",
+					nowait = true,
+					remap = false,
+				},
+				{ "<leader>on", "<cmd>ObsidianNew<CR>", desc = "New Note", nowait = true, remap = false },
+				{ "<leader>oo", "<cmd>cd $SECOND_BRAIN<CR>", desc = "Navigate To Vault", nowait = true, remap = false },
+				{
+					"<leader>os",
+					'<cmd>Telescope live_grep search_dirs={"$SECOND_BRAIN/notes"}<CR>',
+					desc = "Grep SB",
+					nowait = true,
+					remap = false,
+				},
+				{
+					"<leader>otn",
+					"<cmd>ObsidianTemplate note<CR> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<CR>",
+					desc = "Note Template",
+					nowait = true,
+					remap = false,
+				},
+				{
+					"<leader>ots",
+					"<cmd>ObsidianTemplate uni-subject<CR> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<CR>",
+					desc = "Uni-Subject Template",
+					nowait = true,
+					remap = false,
+				},
+				{
+					"<leader>otu",
+					"<cmd>ObsidianTemplate uni-note<CR> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<CR>",
+					desc = "Uni-Note Template",
+					nowait = true,
+					remap = false,
+				},
+				{
+					"<leader>ox",
+					"<cmd>g/^# /s/-/ /g | g/^# /s/_/ - /g<cr>",
+					desc = "Fix Title",
+					nowait = true,
+					remap = false,
+				},
+			},
+		})
 
-
-
-local opts = {
-	mode = "n",    -- NORMAL mode
-	prefix = "<leader>",
-	buffer = nil,  -- Global mappings. Specify a buffer number for buffer local mappings
-	silent = true, -- use `silent` when creating keymaps
-	noremap = true, -- use `noremap` when creating keymaps
-	nowait = true, -- use `nowait` when creating keymaps
+		which_key.setup()
+	end,
 }
-
-
-local mappings = {
-	--[[ ["b"] = { ]]
-	--[[ 	"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown())<cr>", ]]
-	--[[ 	"Buffers", ]]
-	--[[ }, ]]
-	["b"] = { "<cmd>Telescope buffers<cr>", "Buffers" },
-	--[[ ["e"] = { "<cmd>Explore<cr>", "Explorer" }, ]]
-	["e"] = { "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<cr>", "Explorer" },
-	["w"] = { "<cmd>w!<CR>", "Save" },
-	["q"] = { "<cmd>q!<CR>", "Quit" },
-	["cc"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-
-	d = {
-		name = "DAP",
-		ui = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
-		ct = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-		tb = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-
-		sv = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
-		si = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
-		so = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
-
-		sc = { "<cmd>lua require'dap.ui.variables'.scopes()<cr>", "Variable Scopes" },
-		hh = { "<cmd>lua require'dap.ui.variables'.hover()<cr>", "Variable Hover" },
-		hv = { "<cmd>lua require'dap.ui.variables'.visual_hover()<cr>", "Variable Visual Hover" },
-
-		uh = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Widgets Hover" },
-		uf = { "<cmd>lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>", "Widgets Float" },
-
-
-		sbr = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", "Conditional Breakpoint" },
-		sbm = { "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", "Message Breakpoint" },
-
-
-		ro = { "<cmd>lua require'dap'.repl.open()<CR>", "REPL Open" },
-		rl = { "<cmd>lua require'dap'.repl.run_last()<CR>", "REPL Run Last" },
-	},
-
-
-	g = {
-		name = "Git",
-		s = { "<cmd>Git<CR>", "Fugitive" },
-		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
-		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-		l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-		--[[ s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" }, ]]
-		u = {
-			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-			"Undo Stage Hunk",
-		},
-		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-		d = {
-			"<cmd>Gitsigns diffthis HEAD<cr>",
-			"Diff",
-		},
-	},
-	l = {
-		name = "LSP",
-		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		d = {
-			"<cmd>Telescope lsp_document_diagnostics<cr>",
-			"Document Diagnostics",
-		},
-		w = {
-			"<cmd>Telescope lsp_workspace_diagnostics<cr>",
-			"Workspace Diagnostics",
-		},
-		f = { "<cmd>lua vim.lsp.buf.format({async = true})<cr>", "Format" },
-		i = { "<cmd>LspInfo<cr>", "Info" },
-		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-		j = {
-			"<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-			"Next Diagnostic",
-		},
-		k = {
-			"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
-			"Prev Diagnostic",
-		},
-		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-		q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
-		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-		s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-		S = {
-			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-			"Workspace Symbols",
-		},
-	},
-	s = {
-		name = "Search",
-		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-		R = { "<cmd>Telescope registers<cr>", "Registers" },
-		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-		C = { "<cmd>Telescope commands<cr>", "Commands" },
-		w = { "<cmd>Telescope live_grep<cr>", "Find Text" },
-		u = { "<cmd>Telescope grep_string<cr>", "Search Text Under Cursor" },
-		f = { "<cmd>Telescope find_files<cr>", "Find Files" },
-	},
-	t = {
-		name = "Terminal",
-		n = { "<cmd>lua _LAZYNPM_TOGGLE()<cr>", "NPM" },
-		d = { "<cmd>lua _LAZYDOCKER_TOGGLE()<cr>", "Docker" },
-		o = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-		u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-		t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-		p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-		f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-		h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
-	},
-}
-
-
-which_key.register(mappings, opts)
-
-  end,
-  opts = {
-	plugins = {
-		marks = true,    -- shows a list of your marks on ' and `
-		registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-		spelling = {
-			enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-			suggestions = 20, -- how many suggestions should be shown in the list?
-		},
-		-- the presets plugin, adds help for a bunch of default keybindings in Neovim
-		-- No actual key bindings are created
-		presets = {
-			operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-			motions = true,   -- adds help for motions
-			text_objects = true, -- help for text objects triggered after entering an operator
-			windows = true,   -- default bindings on <c-w>
-			nav = true,       -- misc bindings to work with windows
-			z = true,         -- bindings for folds, spelling and others prefixed with z
-			-- g = true, -- bindings for prefixed with g
-		},
-	},
-	-- add operators that will trigger motion and text object completion
-	-- to enable all native operators, set the preset / operators plugin above
-	-- operators = { gc = "Comments" },
-	key_labels = {
-		-- override the label used to display some keys. It doesn't effect WK in any other way.
-		-- For example:
-		-- ["<space>"] = "SPC",
-		-- ["<cr>"] = "RET",
-		-- ["<tab>"] = "TAB",
-	},
-	icons = {
-		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-		separator = "➜", -- symbol used between a key and it's label
-		group = "+",    -- symbol prepended to a group
-	},
-	popup_mappings = {
-		scroll_down = "<c-d>", -- binding to scroll down inside the popup
-		scroll_up = "<c-u>", -- binding to scroll up inside the popup
-	},
-	window = {
-		border = "rounded",     -- none, single, double, shadow
-		position = "bottom",    -- bottom, top
-		margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-		padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-		winblend = 0,
-	},
-	layout = {
-		height = { min = 4, max = 25 },                                            -- min and max height of the columns
-		width = { min = 20, max = 50 },                                            -- min and max width of the columns
-		spacing = 3,                                                               -- spacing between columns
-		align = "left",                                                            -- align columns left, center or right
-	},
-	ignore_missing = true,                                                       -- enable this to hide mappings for which you didn't specify a label
-	hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-	show_help = true,                                                            -- show help message on the command line when the popup is visible
-	triggers = "auto",                                                           -- automatically setup triggers
-	-- triggers = {"<leader>"} -- or specify a list manually
-	triggers_blacklist = {
-		-- list of mode / prefixes that should never be hooked by WhichKey
-		-- this is mostly relevant for key maps that start with a native binding
-		-- most people should not need to change this
-		i = { "j", "k" },
-		v = { "j", "k" },
-	},
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  }
-}
-
-
-
-
-

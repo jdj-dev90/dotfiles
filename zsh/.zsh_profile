@@ -13,6 +13,8 @@ alias or='nvim $SECOND_BRAIN/inbox/*.md'
 export OBSIDIAN_REST_API_KEY="17d18e709ceda1459d6c40e547783d58d1164259b370dd1bb87f1e62067edca7" # second_brain
 # export OBSIDIAN_REST_API_KEY="f58135f44d8a438101385ec4777d1ed52b97c130e2bd0edff712e934d3b1abbd" # weave
 
+
+export OPENAI_API_KEY=$(pass chatgpt/api_key)
   
 export DOTFILES=$HOME/.dotfiles
 export SCRIPTS=$HOME/.dotfiles/bin/.local/scripts

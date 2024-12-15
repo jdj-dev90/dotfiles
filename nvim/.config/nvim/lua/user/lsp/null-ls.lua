@@ -19,7 +19,7 @@ null_ls.setup({
             filetypes = { "go", "gomod", "gotmpl", "tmpl" }, -- Use gotmpl as filetype
         }),
         require("none-ls.diagnostics.eslint_d"),
-        require("typescript.extensions.null-ls.code-actions"),
+        -- require("typescript.extensions.null-ls.code-actions"),
     },
     -- you can reuse a shared lspconfig on_attach callback here
     on_attach = function(client)

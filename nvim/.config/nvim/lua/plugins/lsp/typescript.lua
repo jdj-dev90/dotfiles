@@ -1,38 +1,10 @@
 return {
-	"jose-elias-alvarez/typescript.nvim",
+	"pmizio/typescript-tools.nvim",
+	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 	config = function()
-		require("typescript").setup({
-			server = {
-				on_attach = function(client, bufnr)
-					-- your other on_attach stuff here if you have any
-					-- ...
-					vim.lsp.buf.inlay_hint(bufnr, true)
-				end,
-				settings = {
-					-- specify some or all of the following settings if you want to adjust the default behavior
-					javascript = {
-						inlayHints = {
-							includeInlayEnumMemberValueHints = true,
-							includeInlayFunctionLikeReturnTypeHints = true,
-							includeInlayFunctionParameterTypeHints = true,
-							includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-							includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-							includeInlayPropertyDeclarationTypeHints = true,
-							includeInlayVariableTypeHints = true,
-						},
-					},
-					typescript = {
-						inlayHints = {
-							includeInlayEnumMemberValueHints = true,
-							includeInlayFunctionLikeReturnTypeHints = true,
-							includeInlayFunctionParameterTypeHints = true,
-							includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-							includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-							includeInlayPropertyDeclarationTypeHints = true,
-							includeInlayVariableTypeHints = true,
-						},
-					},
-				},
+		require("typescript-tools").setup({
+			settings = {
+				expose_as_code_action = "all",
 			},
 		})
 	end,

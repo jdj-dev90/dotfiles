@@ -56,3 +56,5 @@ exec feh --bg-scale ${rwp} &
 # Execute DWM
 exec dwm
 
+trap "killall picom clipmenud stalonetray" EXIT
+

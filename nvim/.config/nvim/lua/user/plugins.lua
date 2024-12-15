@@ -153,7 +153,7 @@ return packer.startup(function(use)
     requires = "nvimtools/none-ls-extras.nvim",
   })
 
-  use("jose-elias-alvarez/typescript.nvim")
+  -- use("jose-elias-alvarez/typescript.nvim")
   use("simrat39/rust-tools.nvim")
 
   use({

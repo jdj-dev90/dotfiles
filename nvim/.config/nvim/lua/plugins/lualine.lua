@@ -4,6 +4,7 @@ return {
 	config = function()
 		require("lualine").setup({
 			-- options = { theme  = custom_gruvbox },
+			--
 		})
 	end,
 }
