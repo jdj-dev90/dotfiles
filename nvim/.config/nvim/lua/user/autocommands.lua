@@ -17,6 +17,7 @@ vim.cmd([[
     autocmd!
     autocmd FileType markdown setlocal wrap
     autocmd FileType markdown setlocal spell
+    autocmd FileType markdown lua require'luasnip'.filetype_extend("markdown", {"latex"})
   augroup end
 
   augroup _auto_resize
@@ -29,11 +30,6 @@ vim.cmd([[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
 
-  " augroup _make_on_write
-  "   autocmd!
-  "   autocmd BufWritePost * :silent !compiler %
-  " augroup END
-
   augroup _set_line_number_on_mode_switch
     autocmd!
     autocmd InsertEnter * :set norelativenumber
@@ -43,5 +39,4 @@ vim.cmd([[
   augroup _dadbod_completion
 		autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
   augroup END
-
 ]])

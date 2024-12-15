@@ -66,6 +66,7 @@ return packer.startup(function(use)
     -- mini
     use("echasnovski/mini.files")
     use("echasnovski/mini.cursorword")
+    use("echasnovski/mini.icons")
 
     use("b0o/schemastore.nvim")
 

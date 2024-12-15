@@ -146,3 +146,11 @@ if [ -f '/home/jordan/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/jord
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+
+# fnm
+FNM_PATH="/home/jordan/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/jordan/.local/share/fnm:$PATH"
+  eval "$(fnm env --use-on-cd --shell zsh)"
+fi
+

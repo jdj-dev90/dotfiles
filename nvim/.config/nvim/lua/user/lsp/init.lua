@@ -55,7 +55,7 @@ require("mason").setup({
 })
 
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "tsserver" },
+  ensure_installed = { "lua_ls" },
 })
 
 local util = require("lspconfig.util")
@@ -63,8 +63,8 @@ require("mason-lspconfig").setup_handlers({
   function(server)
     lspconfig[server].setup({})
   end,
-  ["tsserver"] = function()
-    lspconfig.tsserver.setup({
+  ["ts_ls"] = function()
+    lspconfig.ts_ls.setup({
       root_dir = util.root_pattern(".git"),
       settings = {
         completions = {
@@ -81,6 +81,9 @@ require("mason-lspconfig").setup_handlers({
             globals = {
               "vim",
               "luaList", -- KrakenD
+              "luaTable", -- KrakenD
+              "http_response", -- KrakenD
+              "custom_error", -- KrakenD
             },
           },
           workspace = {
@@ -104,6 +107,35 @@ require("mason-lspconfig").setup_handlers({
         },
       },
       filetypes = { "go", "gomod", "gotmpl" }, -- Include gotmpl filetype
+    })
+  end,
+  ["yamlls"] = function()
+    lspconfig.yamlls.setup({
+      settings = {
+        yaml = {
+          validate = true,
+          schemaStore = {
+            enable = false,
+            url = "",
+          },
+          schemas = {
+            -- GitHub Workflows schema for files in .github/workflows/
+            ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json"] =
+            ".github/workflows/*.{yml,yaml}",
+
+            -- GCP Workflows schema for workflows outside .github/
+            ["https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/workflows.json"] =
+            "workflows/*.{yml,yaml}",
+
+            -- Kustomization schema
+            ["https://json.schemastore.org/kustomization.json"] = "kustomization.{yml,yaml}",
+
+            -- Docker Compose schema
+            ["https://raw.githubusercontent.com/docker/compose/master/compose/config/compose_spec.json"] =
+            "docker-compose*.{yml,yaml}",
+          },
+        },
+      },
     })
   end,
 })
