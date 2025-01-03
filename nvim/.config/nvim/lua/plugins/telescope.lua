@@ -1,5 +1,9 @@
 return {
 	"nvim-telescope/telescope.nvim",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	},
 	config = function()
 		local status_ok, telescope = pcall(require, "telescope")
 		if not status_ok then
@@ -121,8 +125,13 @@ return {
 				-- extension_name = {
 				--   extension_config_key = value,
 				-- }
+				fzf = {},
 				-- please take a look at the readme of the extension you want to configure
 			},
 		})
+
+		telescope.load_extension("fzf")
+
+		require("config.telescope.multigrep").setup()
 	end,
 }
